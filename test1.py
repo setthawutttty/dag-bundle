@@ -1,5 +1,6 @@
 import json
 import pendulum
+import time
 from airflow.sdk import dag, task
 
 @dag(
@@ -19,7 +20,7 @@ def test1():
 
     @task(multiple_outputs=True)
     def transform(order_data_dict: dict):
-
+        time.sleep(1000)
         total_order_value = 0
 
         for value in order_data_dict.values():
