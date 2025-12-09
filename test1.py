@@ -14,13 +14,13 @@ def test1():
     @task()
     def extract():
         data_string = '{"1001": 301.27, "1002": 433.21, "1003": 502.22}'
-
+        print("test")
         order_data_dict = json.loads(data_string)
         return order_data_dict
 
     @task(multiple_outputs=True)
     def transform(order_data_dict: dict):
-        time.sleep(1000)
+        time.sleep(10)
         total_order_value = 0
 
         for value in order_data_dict.values():
@@ -30,7 +30,7 @@ def test1():
 
     @task()
     def load(total_order_value: float):
-
+        print("test")
         print(f"Total order value is: {total_order_value:.2f}")
 
     order_data = extract()
